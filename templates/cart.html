@@ -1,0 +1,36 @@
+<!-- templates/cart.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenCart — Panier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include "_nav.html" %}
+
+    <main class="cart-page">
+        <h2>Votre panier</h2>
+        {% if items %}
+            {% for item in items %}
+            <div class="cart-item">
+                <img src="{{ item.image_url }}" alt="{{ item.name }}">
+                <div class="cart-item-info">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.qty }} x {{ "%.0f"|format(item.price) }} FCFA = {{ "%.0f"|format(item.subtotal) }} FCFA</p>
+                    <a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="btn-remove">Supprimer</a>
+                </div>
+            </div>
+            {% endfor %}
+            <p class="total">Total : {{ "%.0f"|format(total) }} FCFA</p>
+            <form action="{{ url_for('checkout') }}" method="POST">
+                <button type="submit" class="btn-add">Valider la commande</button>
+            </form>
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
+    </main>
+
+    <footer><p>&copy; 2026 GreenCart</p></footer>
+</body>
+</html>

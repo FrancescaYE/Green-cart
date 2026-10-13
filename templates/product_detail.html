@@ -1,0 +1,30 @@
+<!-- templates/product_detail.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenCart — {{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include "_nav.html" %}
+
+    <main class="product-page">
+        <div class="product-page-image">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-page-info">
+            <h2>{{ product.name }}</h2>
+            <p class="description">{{ product.description }}</p>
+            <p class="price">{{ "%.0f"|format(product.price) }} FCFA</p>
+            <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST" class="qty-form">
+                <label for="quantity">Quantité :</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
+                <button type="submit" class="btn-add">Ajouter au panier</button>
+            </form>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 GreenCart</p></footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- templates/catalog.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenCart — Catalogue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+ {% include "_nav.html" %}
+
+    <section class="hero">
+        <h2>Le bio, simplement.</h2>
+        <p>Des produits sélectionnés avec soin, livrés directement chez vous à Cotonou et ses environs.</p>
+    </section>
+
+    <main class="catalog">
+        {% for p in products %}
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{ p.image_url }}" alt="{{ p.name }}">
+            </div>
+            <div class="product-info">
+                <h3>{{ p.name }}</h3>
+                <p class="price">{{ p.price }}</p>
+                <a href="{{ url_for('add_to_cart', product_id=p.id) }}" class="btn-add">Ajouter au panier</a>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GreenCart — Des produits bio, pour vous.</p>
+    </footer>
+</body>
+</html>

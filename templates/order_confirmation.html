@@ -1,0 +1,26 @@
+<!-- templates/order_confirmation.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenCart — Commande confirmée</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav-top">
+            <div class="logo">🌿 GreenCart</div>
+            <nav><a href="/">Accueil</a></nav>
+        </div>
+    </header>
+
+    <main class="confirmation-page">
+        <h2>✅ Merci pour votre commande !</h2>
+        <p>Commande n°{{ order_id }} confirmée.</p>
+        <p>Total : {{ "%.0f"|format(total) }} FCFA</p>
+        <a href="/" class="btn-add">Retour au catalogue</a>
+    </main>
+
+    <footer><p>&copy; 2026 GreenCart</p></footer>
+</body>
+</html>
